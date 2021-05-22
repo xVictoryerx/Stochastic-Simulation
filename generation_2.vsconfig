@@ -1,0 +1,28 @@
+import epackage "input_2/yakindu_simplified.ecore"
+import viatra	"input_2/patterns.vql"
+
+generate {
+	metamodel = { package yakindumm excluding {Synchronization} }
+	//constraints = { package hu.bme.mit.inf.dslreasoner.partialsnapshot_mavo.yakindu }
+	partial-model = { "input_2/Statechart.xmi"}
+	solver = ViatraSolver
+	scope = {
+		#node = 100000
+	}
+	
+	config = {
+		runtime = 1000000,
+		log-level = none,
+		"scopePropagator" = "typeHierarchy",
+		"maxSteps" = "1000000",
+		"edgeNodeRatio" = "2.0"
+	}
+	
+	number = 5
+	runs = 1
+	
+	debug =			"outputs/debug"
+	log =			"outputs/log.txt"
+	output =		"outputs/models"
+	statistics =	"outputs/statistics.csv"
+}
